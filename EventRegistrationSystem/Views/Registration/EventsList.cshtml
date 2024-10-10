@@ -1,0 +1,29 @@
+﻿@model IEnumerable<EventRegistrationSystem.Models.Entity.Event>
+
+<h1 class="cetner m3">Registration Events</h1>
+
+<div class="container">
+    <div class="row">
+        @foreach (var registrationEvent in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@registrationEvent.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Date: @registrationEvent.CreatedDate.ToString("dd MMM yyyy")</h6>
+                        <p class="card-text">@registrationEvent.Description</p>
+                        
+                        @if (@registrationEvent.Capacity > 0)
+                        {
+                            <p>Interested in joining?  <a asp-action="ShowRegistration" asp-route-eventId="@registrationEvent.Id">Register Now</a></p>
+                        }
+                          else
+                        {
+                            <p>This event has reached full capacity.</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
